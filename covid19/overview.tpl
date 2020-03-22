@@ -43,6 +43,8 @@
   In the last <b>{{ lastdays }} days</b>, <b class="color-neg">{{ '{0:,.0f}'.format(D['Cases (+)']) }}</b> new Coronavirus cases have been reported worldwide.
   Of which <b class="color-neg">{{ '{0:,.0f}'.format(D['EU Cases (+)']) }}</b> ({{ "{0:.0%}".format(D['EU Cases (+)'] / D['Cases (+)']) }}) are from <b>Europe</b>.
   <b>China</b> has reported <b class="color-neg">{{ '{0:,.0f}'.format(D['China Cases (+)']) }}</b> new cases in the last {{ lastdays }} days.
+  <b>Togo</b> has reported <b class="color-neg">{{ '{0:,.0f}'.format(D['TG Cases (+)']) }}</b> new cases in the last {{ lastdays }} days.
+
 {% elif KPI_CASE == 'US' %}
   In the last <b>{{ lastdays }} days</b>, <b class="color-neg">{{ '{0:,.0f}'.format(D['Cases (+)']) }}</b> new Coronavirus cases have been reported in the US.
   Of which <b class="color-neg">{{ '{0:,.0f}'.format(D['NY Cases (+)']) }}</b> ({{ "{0:.0%}".format(D['NY Cases (+)'] / D['Cases (+)']) }}) are from <b>New York</b> State.
