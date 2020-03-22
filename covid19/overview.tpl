@@ -1,14 +1,16 @@
 {# D, table, newcases, np, pd  #}
 {% set COL_REGION = COL_REGION or 'Country/Region' %}
 {% set KPI_CASE = KPI_CASE or 'World' %}
-{% set KPIS_INFO = KPIS_INFO or [{'title': 'China', 'prefix': 'China'}, {'title': 'Europe', 'prefix': 'EU'}, {'title': 'U.S.', 'prefix': 'US'}] %}
+{% set KPIS_INFO = KPIS_INFO or [{'title': 'China', 'prefix': 'China'}, {'title': 'Europe', 'prefix': 'EU'}, {'title': 'U.S.', 'prefix': 'US'}, {'title': 'Togo', 'prefix': 'Togo'}, {'title': 'Africa', 'prefix': 'UA'}] %}
 {% set LEGEND_DOMAIN = LEGEND_DOMAIN or [10, 100, 1000, np.inf] %}
 {% set WIDTH_REGION, WIDTH_STRIP = 120, 140 %}
 {% set STRIP_WIDTH = (WIDTH_REGION // newcases.shape[1] + 1) %}
 {% set LEGEND_RANGE = ['rgba(255, 152, 0, 0.1)', 'rgba(255, 152, 0, 0.4)', 'rgba(255, 152, 0, 0.7)', 'rgba(255, 152, 0, 1)'] %}
 {% set TOPLINKS = TOPLINKS or [
   {'title': 'World', 'href': '../covid-overview/'}, {'title': 'US', 'href': '../covid-overview-us/'},
-  {'title': 'Europe', 'href': '../covid-overview-europe/'}] %}
+  {'title': 'Europe', 'href': '../covid-overview-europe/'}, ,
+  {'title': 'Togo', 'href': '../covid-overview-togo/'}, ,
+  {'title': 'Africa', 'href': '../covid-overview-africa/'}] %}
 {% set lastdays = (D['updated'] - D['since']).days %}
 
 {% macro kpi(name, number, growth, growcls='') -%}
@@ -48,6 +50,11 @@
   In the last <b>{{ lastdays }} days</b>, <b class="color-neg">{{ '{0:,.0f}'.format(D['Cases (+)']) }}</b> new Coronavirus cases have been reported in the Europe.
   Of which <b class="color-neg">{{ '{0:,.0f}'.format(D['IT Cases (+)']) }}</b> ({{ "{0:.0%}".format(D['IT Cases (+)'] / D['Cases (+)']) }}) are from <b>Italy</b>.
   <b>Spain</b> has reported <b class="color-neg">{{ '{0:,.0f}'.format(D['SP Cases (+)']) }}</b> new cases in the last {{ lastdays }} days.
+{% elif KPI_CASE == 'Africa' %}
+  In the last <b>{{ lastdays }} days</b>, <b class="color-neg">{{ '{0:,.0f}'.format(D['Cases (+)']) }}</b> new Coronavirus cases have been reported in Africa.
+  Of which <b class="color-neg">{{ '{0:,.0f}'.format(D['Togo Cases (+)']) }}</b> ({{ "{0:.0%}".format(D['Togo Cases (+)'] / D['Cases (+)']) }}) are from <b>Togo</b>.
+
+
 {% elif KPI_CASE == 'Asia' %}
   In the last <b>{{ lastdays }} days</b>, <b class="color-neg">{{ '{0:,.0f}'.format(D['Cases (+)']) }}</b> new Coronavirus cases have been reported in Asia.
   Of which <b class="color-neg">{{ '{0:,.0f}'.format(D['CN Cases (+)']) }}</b> ({{ "{0:.0%}".format(D['CN Cases (+)'] / D['Cases (+)']) }}) are from <b>China</b>.
